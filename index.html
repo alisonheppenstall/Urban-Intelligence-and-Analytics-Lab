@@ -1,135 +1,474 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-    <title>Urban Intelligence and Analytics</title>
-        <link rel="icon" type="image/png" href="Logos/02_Logo_signature_jpeg.jpg">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .custom-bg {
-            background-color: #0070C0 !important;
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UIA</title>
+    <link rel="icon" href="./Logos/04L_Logo_icon.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="./Logos/04L_Logo_icon.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+    <script>
+    function show_hide(shown, ...hiddens) {
+      // Manage pages
+      let shown_page = shown + "-page";
+      document.getElementById(shown_page).style.display='block';
+      hiddens.forEach(
+        function(hidden) {
+          let hidden_page = hidden + "-page";
+          document.getElementById(hidden_page).style.display='none';
         }
+      )
+      // window.scrollTo(0, 0);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      })
 
-        .footer {
-            padding-top: 150px;
+      // Manage navigation bar
+      let shown_nav = shown + "-nav";
+      document.getElementById(shown_nav).classList.add('active');
+      hiddens.forEach(
+        function(hidden) {
+          let hidden_nav = hidden + "-nav";
+          document.getElementById(hidden_nav).classList.remove('active');
         }
-    </style>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
+      )
 
-<body>
-    <nav class="navbar navbar-expand-md custom-bg navbar-dark">
-        <!-- Brand -->
-        <a class="navbar-brand" href="index.html">
-            <img src="Logos/02_Logo_signature_jpeg.jpg" width="30" height="30" class="d-inline-block align-middle mr-2"
-                alt="Logo">
-            Urban Intelligence and Analytics
-        </a>
+      // Manage animation
+      if (shown === 'home') {
+        document.getElementById('UIA-landing').classList.remove('other');
+        document.getElementById('UIA-landing').classList.add('home');
+      } else {
+        document.getElementById('UIA-landing').classList.remove('home');
+        document.getElementById('UIA-landing').classList.add('other');
+      }
+      
+      document.getElementById("l1").classList.remove('l-open');
+      document.getElementById("l2").classList.remove('l-open');
+      document.getElementById("l3").classList.remove('l-open');
+      document.body.classList.remove('no-scroll');
+      document.getElementById("navbar").classList.remove('nav-open');
+      const buttons = document.querySelectorAll('.navbutton');
+      const texts = document.querySelectorAll('.navbutton-text');
+      buttons.forEach(button => {
+        // console.log(button)
+        button.classList.remove("navbut-open")
+      });
 
-        <!-- Toggler/collapsibe Button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+      texts.forEach(text => {
+        // console.log(button)
+        button.classList.remove("navtext-open")
+      });
 
-        <!-- Navbar links -->
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/projects.html">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/GroupMembers.html">Group members</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/publications.html">Publications</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="jumbotron text-center">
-        <div class="d-flex justify-content-center align-items-center mb-3">
-            <img src="Logos/01_Logo_png.png" width="160" height="160" class="mr-3" alt="Logo">
-            <h1 class="mb-0">Urban Intelligence and Analytics</h1>
-        </div>
+      return false;
+    }
+
+    function press_burger() {
+      document.getElementById("l1").classList.toggle('l-open');
+      document.getElementById("l2").classList.toggle('l-open');
+      document.getElementById("l3").classList.toggle('l-open');
+      document.getElementById("navbar").classList.toggle('nav-open');
+      document.getElementById("navigation-logo").classList.toggle('logo-open');
+      document.body.classList.toggle('no-scroll');
+      const buttons = document.querySelectorAll('.navbutton');
+      const texts = document.querySelectorAll('.navbutton-text');
+      buttons.forEach(button => {
+        // console.log(button)
+        button.classList.toggle("navbut-open")
+      });
+
+      texts.forEach(text => {
+        // console.log(button)
+        button.classList.toggle("navtext-open")
+      });
+      return false
+    }
+    </script>
+  </head>
+
+  <!-- Navigation bar -->
+  <header id="navbar">
+    <button id="burger" class="burger" aria-label="Open menu" onclick="return press_burger()">
+      <div id="l1" class="line l1"></div>
+      <div id="l2" class="line l2"></div>
+      <div id="l3" class="line l3"></div>
+    </button>
+    <img src="./Logos/04_Logo_icon_clean_plain.svg" id="navigation-logo" class="logo nav-logo">
+    <div class="navbutton">
+      <a id="home-nav" class="navbutton-text active" onclick="return show_hide('home','people','projects','publications');">Home</a>
+      <a id="people-nav" class="navbutton-text" onclick="return show_hide('people','home','projects','publications');">People</a>
+      <a id="projects-nav" class="navbutton-text" onclick="return show_hide('projects','home','people','publications');">Projects</a>
+      <a id="publications-nav" class="navbutton-text" onclick="return show_hide('publications','home','projects','people');">Publications</a>
     </div>
+  </header>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <h3>Understanding cities to build better futures</h3>
-                <p>Cities are living, breathing systems. Every day, millions of people make choices about where to live,
-                    how to travel, where to work, and how to spend their time. These individual decisions interact with
-                    infrastructure, policies, and the environment in complex ways — often producing outcomes no one
-                    planned.</p>
-                <p>Urban Intelligence and Analytics exists to make sense of this complexity.</p>
-                <p>We use data, computer models, and artificial intelligence to understand how cities work, how they
-                    change over time, and how policy decisions can lead to better outcomes for people and places. Our
-                    aim is simple: to help decision-makers explore what might happen before choices are locked in.</p>
-            </div>
-            <div class="col-sm-6">
-                <h3>What do we do?</h3>
-                <p>We build realistic computer simulations of cities and their populations, allowing us to explore how
-                    housing, transport, energy, health, and the environment interact. We are currently involved in a
-                    number of projects exploring how housing, transport, energy, health, and the environment interact. A
-                    large part of our work involves the development of agent-based models, microsimulation and synthetic
-                    population generation.</p>
-            </div>
+  <!-- **************************************
+  Landing animation
+  ************************************** -->
+  <body>
+  <div id="UIA-landing" class="landing home">
+    <div class="halo red no-mix"></div>
+    <div class="halo blue no-mix"></div>
+    <div class="halo yellow no-mix"></div>
+    <div class="atmosphere"></div>
+    <div class="glass"></div>
+    <!-- UIA text (logo to be added) -->
+    <main class="UIA">
+      <div>
+        <h1><img src="./Logos/03_Logo_noText_dark.svg" class="logo landing-logo">UIA</h1>
+        <p>Urban Intelligence & Analytics</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- **************************************
+  Home page 
+  ************************************** -->
+  <div id="home-page">
+      <section id="intro-section" class="content">
+        <h1>Understanding cities to build better futures</h1>
+        <p> Cities are living, breathing systems. Every day, millions of people make choices about where to live, how to travel, where to work, and how to spend their time. These individual decisions interact with infrastructure, policies, and the environment in complex ways — often producing outcomes no one planned.</p>
+
+<p>Urban Intelligence and Analytics exists to make sense of this complexity.</p>
+
+<p>We use data, computer models, and artificial intelligence to understand how cities work, how they change over time, and how policy decisions can lead to better outcomes for people and places. Our aim is simple: to help decision-makers explore what might happen before choices are locked in.</p>
+      <h1>What do we do?</h1>
+      <p>We build realistic computer simulations of cities and their populations, allowing us to explore how urban systems interact. We are currently involved in a number of projects exploring how housing, transport, energy, health, and the environment interact. A large part of our work involves the development of agent-based models, microsimulation and synthetic population generation.</p>
+      </section>
+      <section id="contact-section" class="content">
+        <h1>Contact</h1>
+        <div class="grid-wrapper">
+          <div class="glass"></div><div class="atmosphere"></div>
+          <div class="grid">
+            <a class="tile contact" href="https://www.gla.ac.uk/schools/socialpolitical/staff/alisonheppenstall/" target="_blank" draggable="false">
+              <div class="glass tile-glass"></div><div class="atmosphere"></div>
+              <img src="./Images/Heppenstall.jpeg" class="person-image">
+              <h2>Prof Alison Heppenstall</h2>
+              <p>Alison.Heppenstall@glasgow.ac.uk</p>
+              <p class="webpage">Webpage</p>
+            </a>
+            <a class="tile contact" href="https://www.gla.ac.uk/schools/socialpolitical/staff/yahyagamalaldin/" target="_blank" draggable="false">
+              <div class="glass tile-glass"></div><div class="atmosphere"></div>
+              <img src="./Images/Gamal.jpg" class="person-image">
+              <h2>Dr Yahya Gamal</h2>
+              <p>Yahya.Gamalaldin@glasgow.ac.uk</p>
+              <p class="webpage">Webpage</p>
+            </a>
+          </div>
         </div>
+      </section>
+  </div>
 
-        <h3>Contact</h3>
-        <div class="row">
-            <!-- First Card -->
-
-            <div class="col-md-6 mb-3">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="Images/Heppenstall.jpeg" class="rounded-circle mb-3"
-                            style="width: 100px; height: 100px; object-fit: cover;" alt="Profile">
-                        <h5 class="card-title">Professor Alison Heppenstall</h5>
-                        <p class="card-text mb-1">
-                            <strong>Email:</strong> Alison.heppenstall@glasgow.ac.uk
-                        </p>
-                        <p class="card-text mb-0">
-                            <strong>Website:</strong>
-                            <a href="https://www.gla.ac.uk/schools/socialpolitical/staff/alisonheppenstall/">
-                                https://www.gla.ac.uk/schools/socialpolitical/staff/alisonheppenstall/
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Second Card -->
-            <div class="col-md-6 mb-3">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="Images/Gamal.jpg" class="rounded-circle mb-3"
-                            style="width: 100px; height: 100px; object-fit: cover;" alt="Profile">
-                        <h5 class="card-title">Dr Yahya Gamal</h5>
-                        <p class="card-text mb-1">
-                            <strong>Email:</strong> Yahya.gamaladin@glasgow.ac.uk
-                        </p>
-                        <p class="card-text mb-0">
-                            <strong>Website:</strong>
-                            <a href="https://www.gla.ac.uk/schools/socialpolitical/staff/yahyagamalaldin/">
-                                https://www.gla.ac.uk/schools/socialpolitical/staff/yahyagamalaldin/
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
+  <!-- **************************************
+  People page section
+  ************************************** -->
+  <div id="people-page">
+    
+      <!-- <section id="landing-other">
+        <div class="halo red no-mix"></div>
+        <div class="halo blue no-mix"></div>
+        <div class="halo yellow no-mix"></div>
+        <div class="atmosphere"></div>
+        <div class="glass"></div>
+        <main class="UIA">
+          <div>
+            <h1>UIA</h1>
+            <p>Urban Intelligence & Analytics</p>
+          </div>
+        </main>
+      </section> -->
+      <section id="members-section" class="content">
+        <h1>Group members</h1>
+        <div class="grid-wrapper">
+          <div class="glass"></div><div class="atmosphere"></div>
+          <div class="grid members">
+            <a class="tile members" href="https://www.gla.ac.uk/schools/socialpolitical/staff/alisonheppenstall/" target="_blank" draggable="false">
+              <div class="glass tile-glass"></div><div class="atmosphere"></div>
+              <h3>Prof Alison Heppenstall</h3>
+              <h2>Group Leader</h2>
+              <img src="./Images/Heppenstall.jpeg" class="person-image">
+              <p>Alison.Heppenstall@glasgow.ac.uk</p>
+              <p class="webpage">Webpage</p>
+            </a>
+            <a class="tile members" href="https://www.gla.ac.uk/schools/socialpolitical/staff/yahyagamalaldin/" target="_blank" draggable="false">
+              <div class="glass tile-glass"></div><div class="atmosphere"></div>
+              <h3>Dr Yahya Gamal</h3>
+              <h2>Group Leader</h2>
+              <img src="./Images/Gamal.jpg" class="person-image">
+              <p>Yahya.Gamalaldin@glasgow.ac.uk</p>
+              <p class="webpage">Webpage</p>
+            </a>
+          </div>
         </div>
-    </div>
-    <br> <br>
+        <h1>Associates members</h1>
+        <div class="grid-wrapper">
+          <div class="glass"></div><div class="atmosphere"></div>
+          <div class="grid members">
+            <a class="tile members" href="https://www.gla.ac.uk/schools/socialpolitical/staff/index.html/staffcontact/person/4ed9ebe28693" target="_blank" draggable="false">
+              <div class="glass tile-glass"></div><div class="atmosphere"></div>
+              <h3>Tatsuya Mitomi</h3>
+              <h2>Associate</h2>
+              <img src="./Images/Mitomi.jpg" class="person-image">
+              <p>Tatsuya.Mitomi@glasgow.ac.uk</p>
+              <p class="webpage">Webpage</p>
+            </a>
+            <a class="tile members" href="https://www.linkedin.com/in/daniel-konioukhov" target="_blank" draggable="false">
+              <div class="glass tile-glass"></div><div class="atmosphere"></div>
+              <h3>Daniel Konioukhov</h3>
+              <h2>Associate</h2>
+              <img src="./Images/Konioukhov.jpg" class="person-image">
+              <p>3174941K@student.gla.ac.uk</p>
+              <p class="webpage">Webpage</p>
+            </a>
+            <a class="tile members" href="https://www.hutton.ac.uk/people/gary-polhill/" target="_blank" draggable="false">
+              <div class="glass tile-glass"></div><div class="atmosphere"></div>
+              <h3>Prof Gary Polhill</h3>
+              <h2>Associate</h2>
+              <img src="./Images/Polhill.jpg" class="person-image">
+              <p>Gary.Polhill@hutton.ac.uk</p>
+              <p class="webpage">Webpage</p>
+            </a>
+          </div>
+        </div>
+      </section>
+  </div>
 
-    </div>
-    <!--Footer -->
-    <footer class="bottom bg-light p-2 text-center">
-        Professor Alison Heppenstall: Alison.heppenstall@glasgow.ac.uk
-    </footer>
+  <!-- ******************************************************
+  Projects page
+  ****************************************************** -->
+  <div id="projects-page">
+    <!-- <section id="landing-other">
+      <div class="halo red no-mix"></div>
+      <div class="halo blue no-mix"></div>
+      <div class="halo yellow no-mix"></div>
+      <div class="atmosphere"></div>
+      <div class="glass"></div>
+      <main class="UIA">
+        <div>
+          <h1>UIA</h1>
+          <p>Urban Intelligence & Analytics</p>
+        </div>
+      </main>
+    </section> -->
+    <section id="projects-section" class="content">
+      <h1>Projects</h1>
+      <p>We are involved in a number of ongoing projects</p>
+      <div class="grid-wrapper">
+        <div class="glass"></div><div class="atmosphere"></div>
+        <div class="grid projects">
+          <a class="tile projects" href="https://ai4ci.ac.uk" target="_blank">
+            <div class="glass tile-glass"></div><div class="atmosphere"></div>
+            <h2>AI4CI</h2>
+            <p>An applied AI Hub that is developing AI for collective intelligence at a national scale.</p>
+          </a>
+          <a class="tile projects" href="https://www.jasss.org/27/4/5.html" target="_blank">
+            <div class="glass tile-glass"></div><div class="atmosphere"></div>
+            <h2>Housing markets</h2>
+            <p>Developing a UK housing ABM to explore the impacts of housing market policies.</p>
+          </a>
+          <a class="tile projects" href="https://arxiv.org/abs/2605.30547" target="_blank">
+            <div class="glass tile-glass"></div><div class="atmosphere"></div>
+            <h2>Individual mobility</h2>
+            <p>Developing mobility simulation methods accounting for activity modifications under intervention scenarios.</p>
+          </a>
+          <a class="tile projects" href="https://www.phiuk.org/policy-modelling-for-health" target="_blank">
+            <div class="glass tile-glass"></div><div class="atmosphere"></div>
+            <h2>HealthMod</h2>
+            <p>Policy modelling for health and for exploring the relationship between wealth and health.</p>
+          </a>
+          <a class="tile projects" href="https://ricci-colasanti.github.io/COMPASS/" target="_blank">
+            <div class="glass tile-glass"></div><div class="atmosphere"></div>
+            <h2>Synthetic population generation</h2>
+            <p>Using systems science approaches to understand the impacts of health interventions on populations</p>
+          </a>
+          <a class="tile projects" href="https://www.gla.ac.uk/research/az/optima/" target="_blank">
+            <div class="glass tile-glass"></div><div class="atmosphere"></div>
+            <h2>OPTIMA</h2>
+            <p>Simulating the health impacts for populations of 15-minutes neighbourhoods.</p>
+          </a>
+          <a class="tile projects" href="https://www.gla.ac.uk/research/az/sipher/" target="_blank">
+            <div class="glass tile-glass"></div><div class="atmosphere"></div>
+            <h2>SIPHER</h2>
+            <p>Using System Science approaches to understand the impacts of health interventions on populations.</p>
+          </a>
+          <a class="tile projects" href="https://exascale.hutton.ac.uk" target="_blank">
+            <div class="glass tile-glass"></div><div class="atmosphere"></div>
+            <h2>ExAMPLER</h2>
+            <p>Exploring the challenges and opportunities of exascale computation for the ABM social science community</p>
+          </a>
+          <a class="tile projects" href="https://royalsocietypublishing.org/rsta/article/383/2293/20240229/234674/An-analysis-of-spatial-and-temporal-uncertainty" target="_blank">
+            <div class="glass tile-glass"></div><div class="atmosphere"></div>
+            <h2>Uncertainty quantification</h2>
+            <p>Understanding and visualising spatio-temporal uncertainties in urban simulations.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
 
-</body>
+  <!-- ******************************************************
+  Publications page
+  ****************************************************** -->
+  <div id="publications-page">
+    <!-- <section id="landing-other">
+      <div class="halo red no-mix"></div>
+      <div class="halo blue no-mix"></div>
+      <div class="halo yellow no-mix"></div>
+      <div class="atmosphere"></div>
+      <div class="glass"></div>
+      <main class="UIA">
+        <div>
+          <h1>UIA</h1>
+          <p>Urban Intelligence & Analytics</p>
+        </div>
+      </main>
+    </section> -->
+    <section id="publications-section" class="content">
+      <h1>Publications (From 2023)</h1>
 
+        <h2>2026</h2>
+        <ul class="list-unstyled">
+            <li class="mb-3">
+                Lomax, Nik, Rice, Hugh, Hoehn, Andreas, Hughes, Ceri, Heppenstall, Alison, Elsenbroich, Corinna and
+                Meier, Petra (2026) An inclusive economy classification of British Local Authority Districts and
+                assessment of its association with life expectancy and lifespan variation. Population, Space and Place,
+                32(1), e70151. (doi: 10.1002/psp.70151)
+            </li>
+            <li class="mb-3">
+                Feng, Zixin , Zhao, Qunshan and Heppenstall, Alison (2026) Exploring the influencing factors of public
+                electric vehicle charger usage in Great Britain. Journal of Transport Geography, 134, 104667. (doi:
+                10.1016/j.jtrangeo.2026.104667)</li>
+            <li class="mb-3">
+                Feng, Zixin , Zhao, Qunshan and Heppenstall, Alison (2026) Using agent-based models to simulate the
+                electric vehicle driving behaviours in Great Britain. Cities, 172, 106864. (doi:
+                10.1016/j.cities.2026.106864)
+            </li>
+        </ul>
+
+        <h2>2025</h2>
+        <ul class="list-unstyled">
+            <li class="mb-3">
+                Birkin, Mark, Ballantyne, Patrick, Bullock, Seth, Heppenstall, Alison, Kwon, Heeseo, Malleson, Nick,
+                Yao, Jing and Zanchetta, Anna (2025) Digital twins and AI for healthy and sustainable cities. Computers,
+                Environment and Urban Systems, 120, 102305. (doi: 10.1016/j.compenvurbsys.2025.102305)
+            </li>
+            <li class="mb-3">
+                Rice, Hugh P., Hoehn, Andreas, Meier, Petra, Heppenstall, Alison and Lomax, Nik (2025) An inclusive
+                economy dataset for wards in Great Britain using administrative and synthetic data sources. Scientific
+                Data, 12(1), 1230. (doi: 10.1038/s41597-025-05502-x) (PMID:40664712) (PMCID:PMC12264001)
+            </li>
+            <li class="mb-3">
+                Hjelmskog, Annika, Boyd, Jennifer, Stevenson, Amy, Pollack, Roxana, Elsenbroich, Corinna, Heppenstall,
+                Alison, Toney, Jaime, Winterbottom, Jo and Meier, Petra (2025) The effect of climate mitigation and
+                adaptation policies on health and health inequalities: a systematic review. Lancet Planetary Health,
+                9(7), 101277. (doi: 10.1016/j.lanplh.2025.06.001) (PMID:40645199)
+            </li>
+            <li class="mb-3">
+                Richards, Thomas C., Heppenstall, Alison, Oldroyd, Rachel A., Barr, Victoria and Beecham, Roger (2025)
+                Using OpenPrescribing.net to evaluate neighbourhood-level prescribing of inhalers for asthma and COPD.
+                Scientific Reports, 15, 18089. (doi: 10.1038/s41598-025-02969-x) (PMID:40413267) (PMCID:PMC12103567)
+            </li>
+            <li class="mb-3">
+                Gamal, Yahya, Heppenstall, Alison, Strachan, William, Colasanti, Ricardo and Zia, Kashif (2025) An
+                analysis of spatial and temporal uncertainty propagation in agent-based models. Philosophical
+                Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences, 383(2293),
+                20240229. (doi: 10.1098/rsta.2024.0229)(PMID:40172560) (PMCID:PMC12105802)
+            </li>
+            <li class="mb-3">
+                Kakampakou, Lydia, Stokes, Jonathan, Hoehn, Andreas, de Kamps, Marc, Lawniczak, Wiktoria, Arnold, Kellyn
+                F., Hensor, Elizabeth M.A., Heppenstall, Alison J. and Gilthorpe, Mark S. (2025) Simulating hierarchical
+                data to assess the utility of ecological versus multilevel analyses in obtaining individual-level causal
+                effects. BMC Medical Research Methodology, 25, 79. (doi: 10.1186/s12874-025-02504-6) (PMID:40121398)
+                (PMCID:PMC11929225)
+            </li>
+            <li class="mb-3">
+                Pollack, R. et al. (2024) How could 20-minute neighbourhoods impact health and health inequalities? A
+                policy scoping review. BMC Public Health, 24, 3426. (doi: 10.1186/s12889-024-20928-5) (PMID:39696117)
+                (PMCID:PMC11653922)
+            </li>
+        </ul>
+
+        <h2>2024</h2>
+        <ul class="list-unstyled">
+            <li class="mb-3">
+                Bullock, S. et al. (2024) Artificial intelligence for collective intelligence: A national-scale research
+                strategy. Knowledge Engineering Review, 39, e10. (doi: 10.1017/S0269888924000110)
+            </li>
+            <li class="mb-3">
+                Olmez, Sedar, Heppenstall, Alison, Ge, Jiaqi, Elsenbroich, Corinna and Birks, Dan (2024) Mitigating
+                housing market shocks: an agent-based reinforcement learning approach with implications for real-time
+                decision support. Journal of Simulation, 18(6), pp. 921-939. (doi: 10.1080/17477778.2024.2375446)
+                (PMID:39691552) (PMCID:PMC11649216)
+            </li>
+            <li class="mb-3">
+                Gamal, Yahya, Elsenbroich, Corinna, Gilbert, Nigel, Heppenstall, Alison and Zia, Kashif (2024) A
+                behavioural agent-based model for housing markets: impact of financial shocks in the UK. Journal of
+                Artificial Societies and Social Simulation, 27(4), 5. (doi: 10.18564/jasss.5518)
+            </li>
+            <li class="mb-3">
+                Squires, H. et al. (2024) The PHEM-B toolbox of methods for incorporating the influences on Behaviour
+                into Public Health Economic Models. BMC Public Health, 24(1), 2794. (doi: 10.1186/s12889-024-20225-1)
+                (PMID:39395958)(PMCID:PMC11475213)
+            </li>
+            <li class="mb-3">
+                Olmez, Sedar, Birks, Dan, Heppenstall, Alison and Ge, Jiaqi (2024) Learning the rational choice
+                perspective: a reinforcement learning approach to simulating offender behaviours in criminological
+                agent-based models. Computers, Environment and Urban Systems, 112, 102141. (doi:
+                10.1016/j.compenvurbsys.2024.102141)
+            </li>
+            <li class="mb-3">
+                Kopasker, D. et al. (2024) Evaluating the influence of taxation and social security policies on
+                psychological distress: a microsimulation study of the UK during the COVID-19 economic crisis. Social
+                Science and Medicine, 351, 116953. (doi: 10.1016/j.socscimed.2024.116953) (PMID:38759385)
+                (PMCID:PMC7617584)
+            </li>
+            <li class="mb-3">
+                Heppenstall, Alison, Wang, Mingshu, Demsar, Urska, Lemmens, Rob and Yao, Jing (2024) Preface. AGILE:
+                GIScience Series, 5, 1. (doi: 10.5194/agile-giss-5-1-2024)
+            </li>
+            <li class="mb-3">
+                Brown, H. et al. (2024) Association between individual level characteristics and take-up of a Minimum
+                Income Guarantee for Pensioners: Panel Data Analysis using data from the British Household Panel survey
+                1999–2002. Social Sciences & Humanities Open, 9, 100847. (doi: 10.1016/j.ssaho.2024.100847)
+            </li>
+        </ul>
+
+        <h2>2023</h2>
+        <ul class="list-unstyled">
+            <li class="mb-3">
+                Wijermans, Nanda, Scholz, Geeske, Chappin, Emile, Heppenstall, Alison, Filatova, Tatiana, Polhill, J.
+                Gareth, Semeniuk, Christina and Stöppler, Frithjof (2023) Agent decision-making: the elephant in the
+                room: enabling the justification of decision model fit in social-environmental models. Environmental
+                Modelling and Software, 170, 105850. (doi: 10.1016/j.envsoft.2023.105850)
+            </li>
+            <li class="mb-3">
+                Griffiths, C. et al. (2023) A complex systems approach to obesity: a transdisciplinary framework for
+                action. Perspectives in Public Health, 143(6), pp. 305-309. (doi: 10.1177/17579139231180761)
+                (PMID:37395317) (PMCID:PMC10683338)
+            </li>
+            <li class="mb-3">
+                Antosz, Patrycja, Birks, Dan, Edmonds, Bruce, Heppenstall, Alison, Meyer, Ruth, Polhill, J. Gareth,
+                O'Sullivan, David and Wijermans, Nanda (2023) What do you want theory for? A pragmatic analysis of the
+                roles of "theory" in agent-based modelling. Environmental Modelling and Software, 168, 105802. (doi:
+                10.1016/j.envsoft.2023.105802)
+            </li>
+            <li class="mb-3">
+                Höhn, A. et al. (2023) Systems science methods in public health: what can they contribute to our
+                understanding of and response to the cost-of-living crisis? Journal of Epidemiology and Community
+                Health, 77(9), pp. 610-616. (doi: 10.1136/jech-2023-220435) (PMID:37328262) (PMCID:PMC10423532)
+            </li>
+            <li class="mb-3">
+                An, L. et al. (2023) Modeling agent decision and behavior in the light of data science and artificial
+                intelligence. Environmental Modelling and Software, 166, 105713. (doi: 10.1016/j.envsoft.2023.105713)
+            </li>
+            <li class="mb-3">
+                Franklin, R. S. et al. (2023) Making space in geographical analysis. Geographical Analysis, 55(2), pp.
+                325-341. (doi: 10.1111/gean.12325)
+            </li>
+        </ul>
+      
+    </section>
+    
+  </div>
+  </body>
 </html>
