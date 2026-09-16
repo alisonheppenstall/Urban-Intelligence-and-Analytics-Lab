@@ -121,6 +121,10 @@ Navigation bar CSS
 }
 
 @media (max-width: 500px) {
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   .burger {
     display:block;
     width: 25px;
@@ -135,6 +139,8 @@ Navigation bar CSS
     left: 20px;
     top: 0px;
     z-index: 10;
+
+    -webkit-tap-highlight-color: transparent;
   }
 
   .line {
