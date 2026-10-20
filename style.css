@@ -917,5 +917,46 @@ Publications page
   color: var(--UIA-light-yellow);
 }
 
+.mb-3 {
+  position: relative;
+  isolation: isolate;
+  padding: 5px;
+  border-radius: 5px;
+}
 
+.mb-3::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(250, 169, 20, 0.137),
+    rgba(250, 204, 20, 0.048) 70%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+}
+
+.mb-3:hover::before {
+  opacity: 1;
+}
+
+.link-icon {
+  width: 13px;
+  filter: brightness(0) saturate(100%) invert(60%) sepia(94%) saturate(1400%) hue-rotate(9deg) brightness(95%) contrast(101%);
+}
+
+.doi {
+  display: flex;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.doi a {
+  margin-left: 5px;
+  font-size: 13px;
+  color: var(--UIA-light-yellow)
+}
 
