@@ -16,6 +16,7 @@
         function(hidden) {
           let hidden_page = hidden + "-page";
           document.getElementById(hidden_page).style.display='none';
+          console.log(hidden, " ", document.getElementById(hidden_page).style.display)
         }
       )
       // window.scrollTo(0, 0);
@@ -95,10 +96,11 @@
     </button>
     <img src="./Logos/04_Logo_icon_clean_plain.svg" id="navigation-logo" class="logo nav-logo">
     <div class="navbutton">
-      <a id="home-nav" class="navbutton-text active" onclick="return show_hide('home','people','projects','publications');">Home</a>
-      <a id="people-nav" class="navbutton-text" onclick="return show_hide('people','home','projects','publications');">People</a>
-      <a id="projects-nav" class="navbutton-text" onclick="return show_hide('projects','home','people','publications');">Projects</a>
-      <a id="publications-nav" class="navbutton-text" onclick="return show_hide('publications','home','projects','people');">Publications</a>
+      <a id="home-nav" class="navbutton-text active" onclick="return show_hide('home','about','people','projects','publications');">Home</a>
+      <a id="about-nav" class="navbutton-text" onclick="return show_hide('about','home','people','projects','publications');">About</a>
+      <a id="people-nav" class="navbutton-text" onclick="return show_hide('people','home','about','projects','publications');">People</a>
+      <a id="projects-nav" class="navbutton-text" onclick="return show_hide('projects','home','about','people','publications');">Projects</a>
+      <a id="publications-nav" class="navbutton-text" onclick="return show_hide('publications','home','about','projects','people');">Publications</a>
     </div>
   </header>
 
@@ -124,7 +126,12 @@
   <!-- **************************************
   Home page 
   ************************************** -->
-  <div id="home-page">
+  <div id="home-page"></div>
+
+  <!-- **************************************
+  About page 
+  ************************************** -->
+  <div id="about-page">
       <section id="intro-section" class="content">
         <h1>Understanding cities to build better futures</h1>
         <p> Cities are living, breathing systems. Every day, millions of people make choices about where to live, how to travel, where to work, and how to spend their time. These individual decisions interact with infrastructure, policies, and the environment in complex ways — often producing outcomes no one planned.</p>
@@ -212,6 +219,14 @@
               <p>R.L.Colasanti@leeds.ac.uk</p>
               <p class="webpage">Webpage</p>
             </a>
+            <a class="tile members" href="https://www.gla.ac.uk/schools/socialpolitical/staff/fionacrawford/" target="_blank" draggable="false">
+              <div class="glass tile-glass"></div><div class="atmosphere"></div>
+              <h3>Dr Fiona Crawford</h3>
+              <h2>Associate</h2>
+              <img src="./Images/Crawford.jpg" class="person-image">
+              <p>Fiona.Crawford.2@glasgow.ac.uk</p>
+              <p class="webpage">Webpage</p>
+            </a>
             <a class="tile members" href="https://www.gla.ac.uk/schools/healthwellbeing/staff/corinnaelsenbroich/" target="_blank" draggable="false">
               <div class="glass tile-glass"></div><div class="atmosphere"></div>
               <h3>Dr Corinna Elsenbroich</h3>
@@ -236,6 +251,14 @@
               <p>Pengyuan.Liu@glasgow.ac.uk</p>
               <p class="webpage">Webpage</p>
             </a>
+            <a class="tile members" href="https://www.gla.ac.uk/schools/socialpolitical/staff/davidmcarthur/" target="_blank" draggable="false">
+              <div class="glass tile-glass"></div><div class="atmosphere"></div>
+              <h3>Prof David McArthur</h3>
+              <h2>Associate</h2>
+              <img src="./Images/McArthur.JPG" class="person-image">
+              <p>David.McArthur@glasgow.ac.uk</p>
+              <p class="webpage">Webpage</p>
+            </a>
             <a class="tile members" href="https://www.gla.ac.uk/schools/socialpolitical/staff/index.html/staffcontact/person/4ed9ebe28693" target="_blank" draggable="false">
               <div class="glass tile-glass"></div><div class="atmosphere"></div>
               <h3>Tatsuya Mitomi</h3>
@@ -252,7 +275,14 @@
               <p>Gary.Polhill@hutton.ac.uk</p>
               <p class="webpage">Webpage</p>
             </a>
-            
+            <a class="tile members" href="https://www.gla.ac.uk/schools/socialpolitical/staff/joannastewart/" target="_blank" draggable="false">
+              <div class="glass tile-glass"></div><div class="atmosphere"></div>
+              <h3>Dr Joanna Stewart</h3>
+              <h2>Associate</h2>
+              <img src="./Images/Stewart.jpg" class="person-image">
+              <p>Joanna.Stewart@glasgow.ac.uk</p>
+              <p class="webpage">Webpage</p>
+            </a>
           </div>
         </div>
         <h1>Collaborators</h1>
